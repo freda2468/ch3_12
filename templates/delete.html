@@ -1,0 +1,107 @@
+{% block title %}
+<title>學生資料管理系統 - 刪除資料一(POST)</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+    h1, h3 {
+        text-align: center;
+        color: #333;
+    }
+    h3 a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+    }
+    h3 a:hover {
+        text-decoration: underline;
+    }
+    .form-container {
+        max-width: 700px;
+        margin: 30px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    table {
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+    th {
+        background-color: #f8f8f8;
+        font-weight: bold;
+    }
+    .submit {
+        text-align: center;
+        padding-top: 20px;
+    }
+    button {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #c82333;
+    }
+</style>
+
+<script>
+    function doublecheck() {
+        return confirm("\n您確定要刪除這筆資料嗎?\n刪除後無法恢復\n");
+    }
+</script>
+{% endblock title %}
+
+{% block content %}
+<div class="form-container">
+    <h1>學生資料管理系統 - 刪除資料一(POST)</h1>
+    <a href="/index/"><h3>回首頁</h3></a>
+    <form action="/delete/{{obj_data.cID}}/" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>姓名</th><td>{{ obj_data.cName }}</td>
+            </tr>
+            <tr>
+                <th>性別</th>
+                <td>
+                    {% if obj_data.cSex == "M" %} 男 {% endif %}
+                    {% if obj_data.cSex == "F" %} 女 {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>生日</th><td>{{ obj_data.cBirthday|date:'Y-m-d' }}</td>
+            </tr>
+            <tr>
+                <th>信箱</th><td>{{ obj_data.cEmail }}</td>
+            </tr>
+            <tr>
+                <th>電話</th><td>{{ obj_data.cPhone }}</td>
+            </tr>
+            <tr>
+                <th>地址</th><td>{{ obj_data.cAddr }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="submit">
+                    <button type="submit" onclick="return doublecheck();">刪除</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock content %}

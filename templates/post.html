@@ -1,0 +1,118 @@
+{% block title %}
+<title>學生資料管理系統 - 新增資料</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    h1, h3 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    table {
+        margin: 20px auto;
+        border: 1px solid #333;
+        border-collapse: collapse;
+        width: 80%;
+    }
+    th, td {
+        border: 1px solid #333;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    td input, td button {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+    td input[type="radio"] {
+        width: auto;
+    }
+    td input:focus {
+        outline: none;
+        border: 2px solid #007BFF;
+    }
+    .form-buttons {
+        text-align: center;
+        padding: 10px 0;
+    }
+    .form-buttons input {
+        width: auto;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .form-buttons input:hover {
+        background-color: #007BFF;
+        color: white;
+        border: 1px solid #007BFF;
+    }
+    .link-home {
+        text-align: center;
+        margin: 20px 0;
+    }
+    .link-home a {
+        text-decoration: none;
+        color: #007BFF;
+        font-size: 18px;
+    }
+    .link-home a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1 class="title">學生資料管理系統 - 新增資料</h1>
+    <div class="link-home">
+        <a href="/index/">回首頁</a>
+    </div>
+</div>
+
+<div>
+    <form action="/post/" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>*姓名</th>
+                <td><input type="text" id="cName" name="cName" required placeholder="請輸入姓名"></td>
+            </tr>
+            <tr>
+                <th>*性別</th>
+                <td>
+                    <input type="radio" id="cSexM" name="cSex" value="M" checked>
+                    <label for="cSexM">男</label>
+                    <input type="radio" id="cSexF" name="cSex" value="F">
+                    <label for="cSexF">女</label>
+                </td>
+            </tr>
+            <tr>
+                <th>*生日</th>
+                <td><input type="date" id="cBirthday" name="cBirthday" required></td>
+            </tr>
+            <tr>
+                <th>*信箱</th>
+                <td><input type="email" id="cEmail" name="cEmail" required placeholder="請輸入信箱"></td>
+            </tr>
+            <tr>
+                <th>電話</th>
+                <td><input type="text" id="cPhone" name="cPhone"></td>
+            </tr>
+            <tr>
+                <th>地址</th>
+                <td><input type="text" id="cAddr" name="cAddr"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form-buttons">
+                    <input type="submit" value="儲存">
+                    <input type="reset" value="清除">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}
